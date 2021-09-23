@@ -31,7 +31,7 @@ public class Drivetrain extends SubsystemBase {
   //whats next?!?!??!
   DifferentialDrive dt = new DifferentialDrive(left, right);
 
-  CANEncoder lfEncoder = leftFront.getEncoder();
+  	CANEncoder lfEncoder = leftFront.getEncoder();
 	CANEncoder rfEncoder = rightFront.getEncoder();
 	
 	Gyro gyro = new ADXRS450_Gyro(SPI.Port.kOnboardCS0);
@@ -42,7 +42,7 @@ public class Drivetrain extends SubsystemBase {
 
 	public double getDistance()
 	{
-		return (lfEncoder.getPosition() - rfEncoder.getPosition()) / 2;
+		return (lfEncoder.getPosition() + rfEncoder.getPosition()) / 2;
 	}
 
 	public double getAngle()
