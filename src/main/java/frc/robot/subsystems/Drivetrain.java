@@ -14,25 +14,34 @@ import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj.interfaces.Gyro;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
+import com.ctre.phoenix.motorcontrol.can.TalonSRX;
+import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import com.revrobotics.CANEncoder;
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
 public class Drivetrain extends SubsystemBase {
+	//commented out sections because talons were used instead of cansparks for now
+
   //Create our motors
+  WPI_TalonSRX leftFront = new WPI_TalonSRX(1);
+  WPI_TalonSRX leftBack = new WPI_TalonSRX(2);
+  WPI_TalonSRX rightFront = new WPI_TalonSRX(3);
+  WPI_TalonSRX rightBack = new WPI_TalonSRX(4);
+  /*
   CANSparkMax leftFront = new CANSparkMax(0, MotorType.kBrushed);
   CANSparkMax leftBack = new CANSparkMax(1, MotorType.kBrushed);
   CANSparkMax rightFront = new CANSparkMax(2, MotorType.kBrushed);
   CANSparkMax rightBack = new CANSparkMax(3, MotorType.kBrushed);
-
+ */
   SpeedControllerGroup left = new SpeedControllerGroup(leftFront, leftBack);
   SpeedControllerGroup right = new SpeedControllerGroup(rightFront, rightBack);
 
   //whats next?!?!??!
   DifferentialDrive dt = new DifferentialDrive(left, right);
 
-  	CANEncoder lfEncoder = leftFront.getEncoder();
-	CANEncoder rfEncoder = rightFront.getEncoder();
+  //	CANEncoder lfEncoder = leftFront.getEncoder();
+//	CANEncoder rfEncoder = rightFront.getEncoder();
 	
 	Gyro gyro = new ADXRS450_Gyro(SPI.Port.kOnboardCS0);
 
@@ -42,7 +51,8 @@ public class Drivetrain extends SubsystemBase {
 
 	public double getDistance()
 	{
-		return (lfEncoder.getPosition() + rfEncoder.getPosition()) / 2;
+		return 0;
+	//	return (lfEncoder.getPosition() + rfEncoder.getPosition()) / 2;
 	}
 
 	public double getAngle()
@@ -58,8 +68,8 @@ public class Drivetrain extends SubsystemBase {
 
 	public void resetEncoders()
 	{
-		lfEncoder.setPosition(0);
-		rfEncoder.setPosition(0);
+	//	lfEncoder.setPosition(0);
+	//	rfEncoder.setPosition(0);
 	}
 
 	public void resetGyro()
