@@ -14,6 +14,7 @@ import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj.interfaces.Gyro;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
+import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import com.revrobotics.CANEncoder;
@@ -45,6 +46,13 @@ public class Drivetrain extends SubsystemBase {
 	
 	Gyro gyro = new ADXRS450_Gyro(SPI.Port.kOnboardCS0);
 
+	public Drivetrain()
+	{
+		leftFront.setNeutralMode(NeutralMode.Coast);
+		leftBack.setNeutralMode(NeutralMode.Coast);
+		rightFront.setNeutralMode(NeutralMode.Coast);
+		rightBack.setNeutralMode(NeutralMode.Coast);
+	}
   public void driveBoy(double xspeed, double zrotation){
     dt.arcadeDrive(xspeed, zrotation);
   }
