@@ -25,16 +25,23 @@ public class Drivetrain extends SubsystemBase {
 	//commented out sections because talons were used instead of cansparks for now
 
   //Create our motors
+  /*
   WPI_TalonSRX leftFront = new WPI_TalonSRX(1);
   WPI_TalonSRX leftBack = new WPI_TalonSRX(2);
   WPI_TalonSRX rightFront = new WPI_TalonSRX(3);
   WPI_TalonSRX rightBack = new WPI_TalonSRX(4);
-  /*
+  */
+  
   CANSparkMax leftFront = new CANSparkMax(0, MotorType.kBrushed);
   CANSparkMax leftBack = new CANSparkMax(1, MotorType.kBrushed);
   CANSparkMax rightFront = new CANSparkMax(2, MotorType.kBrushed);
   CANSparkMax rightBack = new CANSparkMax(3, MotorType.kBrushed);
- */
+ 
+  CANEncoder lfEncoder = leftFront.getEncoder();
+  CANEncoder lbEncoder = leftBack.getEncoder();
+  CANEncoder rfEncoder = rightFront.getEncoder();
+  CANEncoder rbEncoder = rightBack.getEncoder();
+
   SpeedControllerGroup left = new SpeedControllerGroup(leftFront, leftBack);
   SpeedControllerGroup right = new SpeedControllerGroup(rightFront, rightBack);
 
@@ -48,10 +55,12 @@ public class Drivetrain extends SubsystemBase {
 
 	public Drivetrain()
 	{
+		/*
 		leftFront.setNeutralMode(NeutralMode.Coast);
 		leftBack.setNeutralMode(NeutralMode.Coast);
 		rightFront.setNeutralMode(NeutralMode.Coast);
 		rightBack.setNeutralMode(NeutralMode.Coast);
+		*/
 	}
   public void driveBoy(double xspeed, double zrotation){
     dt.arcadeDrive(xspeed, zrotation);
@@ -59,8 +68,8 @@ public class Drivetrain extends SubsystemBase {
 
 	public double getDistance()
 	{
-		return 0;
-	//	return (lfEncoder.getPosition() + rfEncoder.getPosition()) / 2;
+		//return 0;
+		return (lfEncoder.getPosition() + rfEncoder.getPosition()) / 2;
 	}
 
 	public double getAngle()
