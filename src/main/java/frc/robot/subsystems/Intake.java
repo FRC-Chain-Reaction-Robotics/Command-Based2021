@@ -5,8 +5,10 @@ import edu.wpi.first.wpilibj.SPI;
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj.interfaces.Gyro;
+import edu.wpi.first.wpilibj2.command.RunCommand;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
+import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
@@ -38,7 +40,7 @@ public class Intake extends SubsystemBase
     }
 
     public void reverse(){
-        intakeMotor.set(ControlMode.PercentOutput, -0.5)
+        intakeMotor.set(ControlMode.PercentOutput, -0.5);
     }
 
 }

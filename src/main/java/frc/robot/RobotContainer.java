@@ -15,6 +15,7 @@ import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import edu.wpi.first.wpilibj2.command.RunCommand;
 import edu.wpi.first.wpilibj.GenericHID.Hand;
+import edu.wpi.first.wpilibj.buttons.JoystickButton;
 
 /**
  * This class is where the bulk of the robot should be declared.  Since Command-based is a
@@ -39,8 +40,8 @@ public class RobotContainer {
     configureButtonBindings();
     m_Drivetrain.setDefaultCommand(new RunCommand(()->m_Drivetrain.driveBoy(-richard.getY(Hand.kLeft), richard.getX(Hand.kRight)), m_Drivetrain));
 
-    var intakeOn = new JoystickButton(richard, kBumperRight.value);
-    var intakeReverse = new JoystickButton(richard, kBumperLeft.value);
+    //var intakeOn = new JoystickButton(richard, kBumperRight.value);
+    //var intakeReverse = new JoystickButton(richard, kBumperLeft.value);
 
 
     
