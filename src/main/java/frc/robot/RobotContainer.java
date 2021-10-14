@@ -25,7 +25,6 @@ import edu.wpi.first.wpilibj.GenericHID.Hand;
 public class RobotContainer {
   // The robot's subsystems and commands are defined here...
   private final Drivetrain m_Drivetrain = new Drivetrain();
-
 //  private final ExampleCommand m_autoCommand = new ExampleCommand(m_exampleSubsystem);
 
   XboxController richard = new XboxController(0);
@@ -39,6 +38,15 @@ public class RobotContainer {
     // Configure the button bindings
     configureButtonBindings();
     m_Drivetrain.setDefaultCommand(new RunCommand(()->m_Drivetrain.driveBoy(-richard.getY(Hand.kLeft), richard.getX(Hand.kRight)), m_Drivetrain));
+
+    var intakeOn = new JoystickButton(richard, kBumperRight.value);
+    var intakeReverse = new JoystickButton(richard, kBumperLeft.value);
+
+
+    
+
+
+
   }
 
   /**
