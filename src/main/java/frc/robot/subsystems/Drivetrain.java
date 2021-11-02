@@ -64,6 +64,7 @@ public class Drivetrain extends SubsystemBase {
 	}
   public void driveBoy(double xspeed, double zrotation){
     dt.arcadeDrive(xspeed, zrotation);
+	
   }
 
 	public double getDistance()
