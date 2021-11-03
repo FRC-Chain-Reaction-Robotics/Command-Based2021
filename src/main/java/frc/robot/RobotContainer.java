@@ -38,7 +38,7 @@ public class RobotContainer {
   public RobotContainer() {
     // Configure the button bindings
     configureButtonBindings();
-    m_Drivetrain.setDefaultCommand(new RunCommand(()->m_Drivetrain.driveBoy(-richard.getY(Hand.kLeft), richard.getX(Hand.kRight)), m_Drivetrain));
+    m_Drivetrain.setDefaultCommand(new RunCommand(()->m_Drivetrain.driveBoy(richard.getY(Hand.kLeft), -richard.getX(Hand.kRight)), m_Drivetrain));
   }
 
   /**

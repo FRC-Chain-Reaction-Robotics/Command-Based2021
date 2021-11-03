@@ -32,18 +32,18 @@ public class Drivetrain extends SubsystemBase {
   WPI_TalonSRX rightBack = new WPI_TalonSRX(4);
   */
   
-  CANSparkMax leftFront = new CANSparkMax(0, MotorType.kBrushed);
-  CANSparkMax leftBack = new CANSparkMax(1, MotorType.kBrushed);
-  CANSparkMax rightFront = new CANSparkMax(2, MotorType.kBrushed);
-  CANSparkMax rightBack = new CANSparkMax(3, MotorType.kBrushed);
+  CANSparkMax leftFront = new CANSparkMax(1, MotorType.kBrushless);
+  CANSparkMax leftBack = new CANSparkMax(5, MotorType.kBrushless);
+  CANSparkMax rightFront = new CANSparkMax(7, MotorType.kBrushless);
+  CANSparkMax rightBack = new CANSparkMax(8, MotorType.kBrushless);
  
   CANEncoder lfEncoder = leftFront.getEncoder();
   CANEncoder lbEncoder = leftBack.getEncoder();
   CANEncoder rfEncoder = rightFront.getEncoder();
   CANEncoder rbEncoder = rightBack.getEncoder();
 
-  SpeedControllerGroup left = new SpeedControllerGroup(leftFront, leftBack);
-  SpeedControllerGroup right = new SpeedControllerGroup(rightFront, rightBack);
+  SpeedControllerGroup left;
+  SpeedControllerGroup right;
 
   //whats next?!?!??!
   DifferentialDrive dt = new DifferentialDrive(left, right);
@@ -61,6 +61,10 @@ public class Drivetrain extends SubsystemBase {
 		rightFront.setNeutralMode(NeutralMode.Coast);
 		rightBack.setNeutralMode(NeutralMode.Coast);
 		*/
+
+		leftFront.setInverted(true);
+		left = new SpeedControllerGroup(leftFront, leftBack);
+  		right = new SpeedControllerGroup(rightFront, rightBack);
 	}
   public void driveBoy(double xspeed, double zrotation){
     dt.arcadeDrive(xspeed, zrotation);
