@@ -38,7 +38,7 @@ public class RobotContainer {
   public RobotContainer() {
     // Configure the button bindings
     configureButtonBindings();
-    m_Drivetrain.setDefaultCommand(new RunCommand(()->m_Drivetrain.driveBoy(-richard.getY(Hand.kLeft), richard.getX(Hand.kRight)), m_Drivetrain));
+    m_Drivetrain.setDefaultCommand(new RunCommand(()->m_Drivetrain.driveBoy(-richard.getY(Hand.kLeft), -richard.getX(Hand.kRight)), m_Drivetrain));
 
     //var intakeOn = new JoystickButton(richard, kBumperRight.value);
     //var intakeReverse = new JoystickButton(richard, kBumperLeft.value);
@@ -68,6 +68,7 @@ public class RobotContainer {
   
   public Command getAutonomousCommand() {
     // An ExampleCommand will run in autonomous
+   // System.out.println("AUTON");
     return new AutonomousCommand(m_Drivetrain);
   }
   

@@ -8,6 +8,8 @@ public class AutonomousCommand extends SequentialCommandGroup
 {
     public AutonomousCommand(Drivetrain dt)
     {
+        addRequirements(dt);
+     //   dt.setDefaultCommand(new DriveToDistanceCommand(10, dt));
         addCommands
         (
             // // Drives in a 1x1 meter square, by executing the following commands in sequence.
@@ -20,7 +22,9 @@ public class AutonomousCommand extends SequentialCommandGroup
             // new DriveToDistanceCommand(1, dt),
             // new TurnToAngleCommand(90, dt)
 
-            new DriveToDistanceCommand(10, dt),
+            new DriveToDistanceCommand(10, dt)
+            /*
+            ,
             new TurnToAngleCommand(90, dt),
             new DriveToDistanceCommand(2.5, dt),
             new TurnToAngleCommand(90, dt),
@@ -30,6 +34,7 @@ public class AutonomousCommand extends SequentialCommandGroup
             new DriveToDistanceCommand(2.5, dt),
             new TurnToAngleCommand(90, dt),
             new DriveToDistanceCommand(5, dt)
+            */
         );
     }
 }

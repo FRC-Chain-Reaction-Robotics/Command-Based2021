@@ -17,6 +17,7 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import com.revrobotics.CANEncoder;
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
@@ -32,10 +33,10 @@ public class Drivetrain extends SubsystemBase {
   WPI_TalonSRX rightBack = new WPI_TalonSRX(4);
   */
   
-  CANSparkMax leftFront = new CANSparkMax(0, MotorType.kBrushed);
-  CANSparkMax leftBack = new CANSparkMax(1, MotorType.kBrushed);
-  CANSparkMax rightFront = new CANSparkMax(2, MotorType.kBrushed);
-  CANSparkMax rightBack = new CANSparkMax(3, MotorType.kBrushed);
+  CANSparkMax leftFront = new CANSparkMax(1, MotorType.kBrushless);
+  CANSparkMax leftBack = new CANSparkMax(5, MotorType.kBrushless);
+  CANSparkMax rightFront = new CANSparkMax(7, MotorType.kBrushless);
+  CANSparkMax rightBack = new CANSparkMax(8, MotorType.kBrushless);
  
   CANEncoder lfEncoder = leftFront.getEncoder();
   CANEncoder lbEncoder = leftBack.getEncoder();
@@ -55,6 +56,7 @@ public class Drivetrain extends SubsystemBase {
 
 	public Drivetrain()
 	{
+		leftFront.setInverted(true);
 		/*
 		leftFront.setNeutralMode(NeutralMode.Coast);
 		leftBack.setNeutralMode(NeutralMode.Coast);
@@ -69,8 +71,7 @@ public class Drivetrain extends SubsystemBase {
 
 	public double getDistance()
 	{
-		//return 0;
-		return (lfEncoder.getPosition() + rfEncoder.getPosition()) / 2;
+		return lfEncoder.getPosition(); //+ rfEncoder.getPosition()) / 2;
 	}
 
 	public double getAngle()
@@ -86,8 +87,8 @@ public class Drivetrain extends SubsystemBase {
 
 	public void resetEncoders()
 	{
-	//	lfEncoder.setPosition(0);
-	//	rfEncoder.setPosition(0);
+		lfEncoder.setPosition(0);
+		rfEncoder.setPosition(0);
 	}
 
 	public void resetGyro()
