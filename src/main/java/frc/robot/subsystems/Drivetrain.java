@@ -76,6 +76,7 @@ public class Drivetrain extends SubsystemBase {
 
 	public double getAngle()
 	{
+		SmartDashboard.putNumber("angle", gyro.getAngle());
 		return gyro.getAngle();
 	}
 
