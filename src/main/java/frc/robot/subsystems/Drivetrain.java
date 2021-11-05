@@ -89,8 +89,8 @@ public class Drivetrain extends SubsystemBase {
 
 	public void resetEncoders()
 	{
-	//	lfEncoder.setPosition(0);
-	//	rfEncoder.setPosition(0);
+		lfEncoder.setPosition(0);
+		rfEncoder.setPosition(0);
 	}
 
 	public void resetGyro()

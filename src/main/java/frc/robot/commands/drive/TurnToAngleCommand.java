@@ -10,7 +10,7 @@ public class TurnToAngleCommand extends PIDCommand
 
     public TurnToAngleCommand(double angleDegrees, Drivetrain dt)
     {
-        super(new PIDController(0.05, 0, 0),
+        super(new PIDController(0.025, 0, 0),
             dt::getAngle,   //  PID's process variable getter method
             angleDegrees,   //  PID setpoint
             output -> dt.driveBoy(0, output),    //  PID output method as a lambda, this will turn the robot to the desired angle

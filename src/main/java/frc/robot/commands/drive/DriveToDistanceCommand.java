@@ -15,7 +15,7 @@ public class DriveToDistanceCommand extends PIDCommand
             distMeters, //  PID setpoint
             output -> dt.driveBoy(output, 0),
             dt);    //  PID output method as a lambda, this w>?>,
-        getController().setTolerance(0.1);  //  the tolerance with which the isFinished() method checks if the PV is within the setpoint
+        getController().setTolerance(1);  //  the tolerance with which the isFinished() method checks if the PV is within the setpoint
 
         this.dt = dt;
     }

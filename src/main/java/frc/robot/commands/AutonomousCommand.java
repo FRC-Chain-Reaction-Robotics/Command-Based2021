@@ -20,25 +20,25 @@ public class AutonomousCommand extends SequentialCommandGroup
             // new DriveToDistanceCommand(1, dt),
             // new TurnToAngleCommand(90, dt)
 
-            // new DriveToDistanceCommand(10, dt),
-            // new TurnToAngleCommand(90, dt),
+             new DriveToDistanceCommand(10, dt),
+             new TurnToAngleCommand(90, dt)
             // new DriveToDistanceCommand(2.5, dt),
             // new TurnToAngleCommand(90, dt),
-            // new DriveToDistanceCommand(2, dt),
+            // new DriveToDistanceCommand(2, dt),//
             // new DriveToDistanceCommand(-2, dt),
             // new TurnToAngleCommand(270, dt),
             // new DriveToDistanceCommand(2.5, dt),
             // new TurnToAngleCommand(90, dt),
             // new DriveToDistanceCommand(5, dt)
 
-            new DriveToDistanceCommand(5, dt),
-            new TurnToAngleCommand(90, dt),
-            new DriveToDistanceCommand(5, dt),
-            new TurnToAngleCommand(90, dt),
-            new DriveToDistanceCommand(5, dt),
-            new TurnToAngleCommand(90, dt),
-            new DriveToDistanceCommand(5, dt),
-            new TurnToAngleCommand(90, dt)
+            // new DriveToDistanceCommand(5, dt),
+            // new TurnToAngleCommand(90, dt),
+            // new DriveToDistanceCommand(5, dt),
+            // new TurnToAngleCommand(90, dt),
+            // new DriveToDistanceCommand(5, dt),
+            // new TurnToAngleCommand(90, dt),
+            // new DriveToDistanceCommand(5, dt),
+            // new TurnToAngleCommand(90, dt)
         );
     }
 }
