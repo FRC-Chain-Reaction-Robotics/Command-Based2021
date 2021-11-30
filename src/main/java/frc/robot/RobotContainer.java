@@ -14,7 +14,10 @@ import frc.robot.subsystems.Drivetrain;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import edu.wpi.first.wpilibj2.command.RunCommand;
+import edu.wpi.first.wpilibj2.command.button.JoystickButton;
+import static edu.wpi.first.wpilibj.XboxController.Button.*;
 import edu.wpi.first.wpilibj.GenericHID.Hand;
+import edu.wpi.first.wpilibj.command.InstantCommand;
 
 /**
  * This class is where the bulk of the robot should be declared.  Since Command-based is a
@@ -27,7 +30,7 @@ public class RobotContainer {
   private final Drivetrain m_Drivetrain = new Drivetrain();
 
 //  private final ExampleCommand m_autoCommand = new ExampleCommand(m_exampleSubsystem);
-
+  boolean slowMode = false;
   XboxController richard = new XboxController(0);
 
   
@@ -38,7 +41,12 @@ public class RobotContainer {
   public RobotContainer() {
     // Configure the button bindings
     configureButtonBindings();
-    m_Drivetrain.setDefaultCommand(new RunCommand(()->m_Drivetrain.driveBoy(richard.getY(Hand.kLeft), -richard.getX(Hand.kRight)), m_Drivetrain));
+    //slowMode = richard.getBumper(Hand.kLeft);
+    var slowButton = new JoystickButton(richard, kBumperLeft.value);
+    
+    slowButton.whenHeld(new RunCommand(() -> m_Drivetrain.setOutput(0.5))).whenReleased(new RunCommand(() -> m_Drivetrain.setOutput(1)));
+    m_Drivetrain.setDefaultCommand(new RunCommand(()->m_Drivetrain.driveBoy(-richard.getY(Hand.kLeft), -richard.getX(Hand.kRight)), m_Drivetrain));
+    
   }
 
   /**

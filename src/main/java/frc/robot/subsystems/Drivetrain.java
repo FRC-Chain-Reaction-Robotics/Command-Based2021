@@ -12,6 +12,7 @@ import edu.wpi.first.wpilibj.SPI;
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj.interfaces.Gyro;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 import com.ctre.phoenix.motorcontrol.NeutralMode;
@@ -42,11 +43,13 @@ public class Drivetrain extends SubsystemBase {
   CANEncoder rfEncoder = rightFront.getEncoder();
   CANEncoder rbEncoder = rightBack.getEncoder();
 
-  SpeedControllerGroup left;
-  SpeedControllerGroup right;
+  SpeedControllerGroup left = new SpeedControllerGroup(leftFront, leftBack);
+  SpeedControllerGroup right = new SpeedControllerGroup(rightFront, rightBack);
 
   //whats next?!?!??!
-  DifferentialDrive dt = new DifferentialDrive(left, right);
+  DifferentialDrive dt;
+
+  double output = 1;
 
   //	CANEncoder lfEncoder = leftFront.getEncoder();
 //	CANEncoder rfEncoder = rightFront.getEncoder();
@@ -63,17 +66,25 @@ public class Drivetrain extends SubsystemBase {
 		*/
 
 		leftFront.setInverted(true);
-		left = new SpeedControllerGroup(leftFront, leftBack);
-  		right = new SpeedControllerGroup(rightFront, rightBack);
+		dt = new DifferentialDrive(left, right);
+		lfEncoder.setPositionConversionFactor(1/34.0);
+		rfEncoder.setPositionConversionFactor(-1/34.0);
+		lfEncoder.setPosition(0);
+		rfEncoder.setPosition(0);
+
+		leftFront.burnFlash();
+		rightFront.burnFlash();	
 	}
   public void driveBoy(double xspeed, double zrotation){
-    dt.arcadeDrive(xspeed, zrotation);
+    dt.arcadeDrive(output * xspeed, output * zrotation);
   }
 
 	public double getDistance()
 	{
 		//return 0;
-		return (lfEncoder.getPosition() + rfEncoder.getPosition()) / 2;
+		SmartDashboard.putNumber("position", lfEncoder.getPosition());
+		return lfEncoder.getPosition();
+		
 	}
 
 	public double getAngle()
@@ -86,6 +97,12 @@ public class Drivetrain extends SubsystemBase {
 		resetEncoders();
 		resetGyro();
 	}
+
+	public void setOutput(double x)
+	{
+		dt.setMaxOutput(x);
+	}
+
 
 	public void resetEncoders()
 	{
@@ -101,7 +118,9 @@ public class Drivetrain extends SubsystemBase {
 
   @Override
   public void periodic() {
-    // This method will be called once per scheduler run
+	// This method will be called once per scheduler run'
+	SmartDashboard.putNumber("lTicks", lfEncoder.getPosition());
+	SmartDashboard.putNumber("rTicks", rfEncoder.getPosition());
   }
 
   
