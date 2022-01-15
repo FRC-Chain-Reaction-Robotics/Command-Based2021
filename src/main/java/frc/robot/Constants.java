@@ -20,4 +20,23 @@ public final class Constants {
     public static final int LB_MOTOR_ID = 5;
     public static final int RF_MOTOR_ID = 7;
     public static final int RB_MOTOR_ID = 8;
+    public static final int FEEDER_MOTOR_ID = 0;
+    public static final int LEFT_SHOOTER_MOTOR_ID = 0;
+    public static final int RIGHT_SHOOTER_MOTOR_ID = 0;
+
+    /**
+     * Stores PID gain constants.
+     * <p> Usage: new PIDGains(kP, kI, kD) passed as an argument, with kP as your P constant and so on.
+     */
+    public static class PIDGains
+    {
+        public double kP, kI, kD;
+        
+        public PIDGains(double kP, double kI, double kD)
+        {
+            this.kP = kP;
+            this.kI = kI;
+            this.kD = kD;
+        }
+    }
 }

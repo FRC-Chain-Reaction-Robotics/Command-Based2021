@@ -31,7 +31,7 @@ public class AutonomousCommand extends SequentialCommandGroup
             // new TurnToAngleCommand(90, dt),
             // new DriveToDistanceCommand(5, dt)
 
-            new DriveToDistanceCommand(5, dt),
+            new DriveToDistanceCommand(5, dt), 
             new TurnToAngleCommand(90, dt),
             new DriveToDistanceCommand(5, dt),
             new TurnToAngleCommand(90, dt),
